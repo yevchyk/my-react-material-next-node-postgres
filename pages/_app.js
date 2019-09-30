@@ -10,12 +10,14 @@ import withRedux from "next-redux-wrapper";
 import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {setServerToken, refresh, setUser} from "../actions/auth";
+import { getRooms } from "../actions/messages";
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx, pathname, ...Context}) {
     const isServer = ctx.isServer;
     const dispatch = ctx.store.dispatch;
     let token = '';
+    console.log(ctx.pathname);
     if (ctx.req) {
       if (ctx.req.headers.cookie) {
         const cookie = ctx.req.headers.cookie.split(';').find(c => c.trim().startsWith('token='))
@@ -29,13 +31,22 @@ class MyApp extends App {
               // }
               dispatch(setUser(res.data.user))
               dispatch(setServerToken(res.data.token))
-              dispatch(setServerToken(token))
-              return { pageProps };
+              // server side page logic
+              switch (ctx.pathname) {
+                case '/':
+                    
+                case '/rooms':
+                    dispatch(getRooms())
+                default:
+                  break;
               }
-            )
+              return { pageProps };
+            })
           }
         }
       }
+    }else {
+      return { pageProps };
     }
   }
 

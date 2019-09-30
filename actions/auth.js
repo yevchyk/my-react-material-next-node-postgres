@@ -24,9 +24,11 @@ export const logIn = ({email ,password}) => async dispatch =>{
   });
 }
 
-export const refresh = (token = Cookies.get('token', token)) => async dispatch =>{
+export const refresh = (token = Cookies.get('token')) => async dispatch =>{
   dispatch(setLoad(true))
+  console.log(29)
   return instance.get(`auth/refresh/${token}`).then(res=>{
+    console.log(31)
     dispatch(setToken(res.data.token));
     dispatch(setUser(res.data.user));
     dispatch(setLoad(false))

@@ -9,6 +9,7 @@ import {refresh} from '../actions/auth'
 
 function Main({user ,...props}){
   const [switcher, setSwitcher] = useState(false);
+
  function handlerSnackbar() {
     const {dispatch} = props
     if (!switcher) {
@@ -16,7 +17,7 @@ function Main({user ,...props}){
       dispatch(refresh())
     }else dispatch(snackbarUnset())
     setSwitcher(!switcher);
-}
+  }
 
   return (
     <Private>

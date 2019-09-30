@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { API_PATH } from '../constants/config'
+import store from '../store'
+import Cookies from 'js-cookie'
 
 // configure base url
 const instance = axios.create({
@@ -8,7 +10,7 @@ const instance = axios.create({
 
 // intercept requests and add authorization token
 instance.interceptors.request.use((config) => {
-  config.headers.authorization = `Bearer ngcggf`;
+  config.headers.authorization = `Bearer = store.getStore().user.token`;
   return config;
 });
 

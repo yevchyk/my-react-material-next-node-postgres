@@ -12,6 +12,7 @@ class Authorization {
     if (req.params.token) {
       return req.params.token
     }
+    console.log(req.headers, 15)
     const bearerToken = req.headers.cookie.split(';').find(c => c.trim().startsWith('token=')).split('=')[1];
     const token = bearerToken && bearerToken.replace('Bearer ', '');
     return token;
