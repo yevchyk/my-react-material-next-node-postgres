@@ -6,6 +6,7 @@ import { Switch } from '@material-ui/core';
 import {snackbarSet, snackbarUnset } from '../actions/tools'
 import UserList from '../components/UserList/index'
 import {refresh} from '../actions/auth'
+import {getUsers} from '../actions/profiles'
 
 function Main({user ,...props}){
   const [switcher, setSwitcher] = useState(false);
@@ -15,6 +16,7 @@ function Main({user ,...props}){
     if (!switcher) {
       dispatch(snackbarSet('info', 'info ok'))
       dispatch(refresh())
+      dispatch(getUsers())
     }else dispatch(snackbarUnset())
     setSwitcher(!switcher);
   }

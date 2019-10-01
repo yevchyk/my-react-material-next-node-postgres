@@ -1,3 +1,4 @@
+const uuidv4 = require('uuid/v4');
 'use strict';
 
 module.exports = {
@@ -7,6 +8,7 @@ module.exports = {
         text: 'hi',
         createdAt: new Date(),
         updatedAt: new Date(),
+        roomId: 1,
       }], {});
   },
 

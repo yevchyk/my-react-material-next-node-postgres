@@ -4,7 +4,11 @@ module.exports = (sequelize, DataTypes) => {
     text: DataTypes.STRING
   }, {});
   Message.associate = function(models) {
-
+    // Message.belongsToMany(models.User, {
+    //   as: 'message',
+    //   through: 'Rooms',
+    //   foreignKey: 'message'
+    // })
   };
   return Message;
 };

@@ -1,15 +1,15 @@
-import { SET_ROOMS } from '../constants/actionTypes'
+import { SET_USERS} from '../constants/actionTypes'
 
 export const initialState = {
-  roomList: {},
+  profileList: []
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_ROOMS: {
+    case SET_USERS: {
       return Object.assign({}, state, {
         ...state,
-        roomList: action.rooms
+        profileList: action.list,
       })
     }
     default: {

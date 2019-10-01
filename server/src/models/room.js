@@ -8,11 +8,6 @@ module.exports = (sequelize, DataTypes) => {
       as: 'Room',
       onDelete: 'CASCADE',
     })
-    Room.belongsToMany(models.User, {
-      as: 'roomId',
-      through: 'Rooms_test',
-      foreignKey: 'Room'
-    })
   };
   return Room;
 };

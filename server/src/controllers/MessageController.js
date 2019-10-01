@@ -6,12 +6,7 @@ const {Op} = sequelize
 class MessageController {
 
   static async room(req, res) {
-    const {
-      id,
-      text,
-      roomId
-    } = req.body;
-
+    const {id} = req.params;
     await models.Message.findOrCreate({
       where: { id: roomId }
     }).then((room) => {
