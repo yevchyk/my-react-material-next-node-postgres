@@ -1,15 +1,10 @@
 import axios from 'axios';
 import { API_PATH } from '../constants/config'
-
+import store from '../store'
+import Cookies from 'js-cookie'
 // configure base url
 const instance = axios.create({
   baseURL: `${API_PATH}/` ,
-});
-
-// intercept requests and add authorization token
-instance.interceptors.request.use((config) => {
-  config.headers.authorization = `Bearer ngcggf`;
-  return config;
 });
 
 // intercept response and reload page if request error

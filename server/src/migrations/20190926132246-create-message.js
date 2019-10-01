@@ -3,13 +3,26 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Messages', {
       id: {
-        allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
       },
-      text: {
-        type: Sequelize.STRING
+      roomId: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Rooms',
+          key: 'roomId',
+        }
+      },
+      userId: {
+        type: Sequelize.UUID,
+        onDelete: 'CASCADE',
+        allowNull: true,
+        references: {
+          model: 'Users',
+          key: 'id',
+        }
       },
       createdAt: {
         allowNull: false,

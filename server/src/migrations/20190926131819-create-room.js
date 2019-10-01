@@ -2,11 +2,20 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Rooms', {
-      id: {
+      roomId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
+      },
+      userId: {
+        type: Sequelize.UUID,
+        onDelete: 'CASCADE',
+        allowNull: true,
+        references: {
+          model: 'Users',
+          key: 'id',
+        }
       },
       name: {
         type: Sequelize.STRING

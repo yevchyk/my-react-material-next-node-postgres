@@ -1,6 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
+    id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      primaryKey: true,
+    },
     firstName: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -20,8 +25,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   User.associate = function(models) {
     User.hasMany(models.Room, {
-      as: 'User',
-      foreignKey: 'User',
+      as: 'userId',
+      foreignKey: 'userId',
       onDelete: 'CASCADE',
     });
 

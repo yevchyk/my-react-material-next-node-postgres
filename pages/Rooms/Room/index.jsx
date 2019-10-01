@@ -18,34 +18,15 @@ function Rooms(props) {
 
   function sendMessage() {
     const roomId = Router.router.query.id
-    const data = {
-      firstName : props.userData[0].firstName,
-      lustName : props.userData[0].lastName,
-      uid : props.userData[0].uid,
-      text,
-      date : date.format(now, 'YYYY/MM/DD HH:mm:ss')
-    }
-    const masseges = Object.values({
-      ...props.rooms[0].masseges,
-      data
-    })
-
     if (text !== '') {
-      helloWorld(data)
-      props.firestore.add(`rooms/${roomId}/messages`, {
-          firstName : props.userData[0].firstName,
-          lustName : props.userData[0].lastName,
-          uid : props.userData[0].uid,
-          text,
-          date : date.format(now, 'YYYY/MM/DD HH:mm:ss')
-      })
+
       setText('')
     }
   }
 
   useEffect(() => {
     const roomId = Router.router.query.id
-    props.firestore.setListeners([`rooms/${roomId}/messages`])
+    
     if (scrollRef.current) {
       const scrollHeight = scrollRef.current.scrollHeight;
       scrollRef.current.scrollTo({
@@ -54,13 +35,13 @@ function Rooms(props) {
       })
     }
   });
+  console.log(props);
   return (
     <Private>
       <div className={classes.messageZone} ref={scrollRef}>
         {
-          props.rooms
-              ?
-              props.rooms[0].messages.map((massage, key)=>
+          props.dialog.messages ?
+            props.dialog.map((massage, key)=>(
                 <div 
                   key={key}
                   className={clsx(classes.dialogBlock,{
@@ -82,12 +63,23 @@ function Rooms(props) {
                   </div>
                 </div>
               )
-              : null
+            )
+          : null
         }
       </div>
       <div className={classes.sendZone}>
-        <TextareaAutosize value={text} onChange={(e)=>setText(e.target.value)} aria-label="minimum height" rows={4} placeholder="Message..." className={classes.textarea}/>
-        <Button variant="contained" color="primary" className={classes.send} onClick={sendMessage}>
+        <TextareaAutosize 
+          value={text} 
+          onChange={(e)=>setText(e.target.value)} 
+          aria-label="minimum height" rows={4} 
+          placeholder="Message..." 
+          className={classes.textarea}
+        />
+        <Button 
+          variant="contained" 
+          color="primary" 
+          className={classes.send} 
+          onClick={sendMessage}>
           Send
         </Button>
       </div>
@@ -96,5 +88,7 @@ function Rooms(props) {
 }
 
 export default compose(
-    connect(res=>res )
+  connect(({messages})=>({
+    dialog: messages.room
+  }) )
 )(Rooms)

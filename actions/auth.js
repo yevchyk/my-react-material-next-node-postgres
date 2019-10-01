@@ -9,7 +9,7 @@ export const signUp = (user) =>async dispatch =>{
     dispatch(setToken(res.data.token))
     dispatch(setUser(res.data.user))
     dispatch(setLoad(false))
-    return res
+    return res.data
   });
 }
 
@@ -20,17 +20,17 @@ export const logIn = ({email ,password}) => async dispatch =>{
     dispatch(setToken(res.data.token))
     dispatch(setUser(res.data.user))
     dispatch(setLoad(false))
-    return res
+    return res.data
   });
 }
 
-export const refresh = (token = Cookies.get('token', token)) => async dispatch =>{
+export const refresh = (token = Cookies.get('token')) => async dispatch =>{
   dispatch(setLoad(true))
-  return instance.get(`auth/refresh/${token}`).then(res=>{
+  return instance.get(`auth/refresh`).then(res=>{
     dispatch(setToken(res.data.token));
     dispatch(setUser(res.data.user));
     dispatch(setLoad(false))
-    return res
+    return res.data
   });
 }
 

@@ -5,6 +5,7 @@ const MessageController =  require('../controllers/messageController');
 
 messagesRoutes.post('/send', Authorization.authorize, MessageController.send);
 messagesRoutes.get('', Authorization.authorize, MessageController.roomsList);
-messagesRoutes.get('/room/:id', Authorization.authorize, MessageController.room);
+messagesRoutes.get('/:id', Authorization.authorize, MessageController.room);
+messagesRoutes.get('/create/:id', Authorization.authorize, MessageController.createRoom);
 
-module.exports = messagesRoutes;
+module.exports = messagesRoutes; 

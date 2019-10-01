@@ -6,14 +6,21 @@ const {Op} = sequelize
 class MessageController {
 
   static async room(req, res) {
-    const {
-      id,
-      text,
-      roomId
-    } = req.body;
+    const {id} = req.params;
+    await models.Room.findOrCreate({
+      where: { userId: id }
+    }).then((room) => {
+      if (!room) res.status(409).send({ error: 'щось сталось' })
+      return res.status(200).json(room);
+    });
+  }
 
-    await models.Message.findOrCreate({
-      where: { id: roomId }
+  static async createRoom(req, res) {
+    const {id} = req.params;
+    console.log(id, 20)
+    let userId = id
+    await models.Room.findOrCreate({
+      where: { userId, }
     }).then((room) => {
       if (!room) res.status(409).send({ error: 'Email already in use' })
       return res.status(200).json(room);

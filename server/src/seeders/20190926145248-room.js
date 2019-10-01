@@ -1,3 +1,4 @@
+const uuidv4 = require('uuid/v4');
 'use strict';
 
 module.exports = {
@@ -7,9 +8,9 @@ module.exports = {
         name: 'test',
         createdAt: new Date(),
         updatedAt: new Date(),
+        userId: uuidv4(),
       }], {});
   },
-
   down: (queryInterface, Sequelize) => {
       return queryInterface.bulkDelete('Rooms', null, {});
   }
