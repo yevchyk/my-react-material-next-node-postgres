@@ -1,7 +1,8 @@
 import { SET_ROOMS } from '../constants/actionTypes'
 
 export const initialState = {
-  roomList: {},
+  roomList: [],
+  room: {},
 }
 
 export default (state = initialState, action) => {

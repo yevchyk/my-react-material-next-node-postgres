@@ -15,7 +15,6 @@ function Main({user ,...props}){
     const {dispatch} = props
     if (!switcher) {
       dispatch(snackbarSet('info', 'info ok'))
-      dispatch(refresh())
       dispatch(getUsers())
     }else dispatch(snackbarUnset())
     setSwitcher(!switcher);

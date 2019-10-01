@@ -5,7 +5,6 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
       return queryInterface.bulkInsert('Messages', [{
         id: 1,
-        text: 'hi',
         createdAt: new Date(),
         updatedAt: new Date(),
         roomId: 1,
