@@ -1,25 +1,25 @@
 import {SET_USER, REMOVE_TOKEN, SET_TOKEN, REMOVE_USER} from '../constants/actionTypes'
 import {snackbarSet, snackbarUnset, setLoad} from './tools'
 import instance from '../api/axios';
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
 
 export const signUp = (user) =>async dispatch =>{
-  dispatch(setLoad(true))
+  dispatch(setLoad(true));
   return instance.post('auth/register', user).then(res=>{
-    dispatch(setToken(res.data.token))
-    dispatch(setUser(res.data.user))
-    dispatch(setLoad(false))
+    dispatch(setToken(res.data.token));
+    dispatch(setUser(res.data.user));
+    dispatch(setLoad(false));
     return res.data
   });
 }
 
 export const logIn = ({email ,password}) => async dispatch =>{
-  dispatch(setLoad(true))
+  dispatch(setLoad(true));
   const body = {email, password}
   return instance.post('auth/login', body).then(res=>{
-    dispatch(setToken(res.data.token))
-    dispatch(setUser(res.data.user))
-    dispatch(setLoad(false))
+    dispatch(setToken(res.data.token));
+    dispatch(setUser(res.data.user));
+    dispatch(setLoad(false));
     return res.data
   });
 }
@@ -45,7 +45,7 @@ export const setUser = (user) => ({
 });
 
 export const setToken = (token) => { 
-Cookies.set('token', token)
+Cookies.set('token', token);
   return {
     type: SET_TOKEN,
     token

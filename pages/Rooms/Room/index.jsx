@@ -14,7 +14,6 @@ function Rooms(props) {
   const [text, setText] = useState('');
   const scrollRef = useRef(null);
   const classes = useStyles();
-  const now = new Date();
 
   function sendMessage() {
     const roomId = Router.router.query.id
@@ -35,7 +34,6 @@ function Rooms(props) {
       })
     }
   });
-  console.log(props);
   return (
     <Private>
       <div className={classes.messageZone} ref={scrollRef}>
