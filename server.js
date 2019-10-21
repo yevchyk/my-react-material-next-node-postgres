@@ -10,13 +10,13 @@ const app = express();
 require('dotenv').config();
 const bodyParser = require('body-parser');
 
-if (process.env.PROCESS = "DEVELOPMENT") {
-  models.sequelize.sync().then(function () {
-    server.listen(port);
-    server.on('error', onError);
-    server.on('listening', onListening);
-  });
-}
+// if (process.env.PROCESS = "DEVELOPMENT") {
+//   models.sequelize.sync().then(function () {
+//     server.listen(port);
+//     server.on('error', onError);
+//     server.on('listening', onListening);
+//   });
+// }
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

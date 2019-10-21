@@ -12,6 +12,7 @@ const instance = axios.create({
 instance.interceptors.response.use(
   response => response,
   (error) => {
+
     const { response: { status, data } } = error;
 
     if (status === 403 &&

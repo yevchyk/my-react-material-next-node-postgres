@@ -24,7 +24,6 @@ function SignUp(props) {
     firstName: '',
     lastName: '',
     allowExtraEmails: false,
-    rooms: [],
   })
 
   const changeState = (e, type) => {

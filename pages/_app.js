@@ -34,6 +34,7 @@ class MyApp extends App {
               return config;
             });
           }
+          console.log(!!token, ctx.pathname)
           if (token) {
               // server side page logic
               switch (ctx.pathname) {

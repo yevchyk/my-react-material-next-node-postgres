@@ -18,6 +18,7 @@ class Authorization {
     }
     const bearerToken = req.headers.cookie.split(';').find(c => c.trim().startsWith('token=')).split('=')[1];
     const token = bearerToken && bearerToken.replace('Bearer ', '');
+    console.log(token)
     return token;
   }
 
