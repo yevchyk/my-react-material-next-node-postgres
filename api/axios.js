@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { API_PATH } from '../constants/config'
-import store from '../store'
-import Cookies from 'js-cookie'
+
 // configure base url
 const instance = axios.create({
   baseURL: `${API_PATH}/` ,
